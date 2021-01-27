@@ -116,6 +116,11 @@ func (fs ReverseHttpFs) Chmod(n string, m os.FileMode) error {
 	return syscall.EPERM
 }
 
+// Chown always returns a permissions error, since an http.FileSystem is read-only
+func (fs ReverseHttpFs) Chown(name string, uid, gid int) error {
+	return syscall.EPERM
+}
+
 // Name returns "ReverseHttpFs"
 func (fs ReverseHttpFs) Name() string {
 	return "ReverseHttpFs"
